@@ -23,13 +23,15 @@ namespace ToDoList
       };
 
       Get["/categories/new"] = _ => {
-   return View["categories_form.cshtml"];
+        return View["categories_form.cshtml"];
      };
+     
      Post["/categories/new"] = _ => {
        Category newCategory = new Category(Request.Form["category-name"]);
        newCategory.Save();
        return View["success.cshtml"];
      };
+
      Get["/tasks/new"] = _ => {
        List<Category> AllCategories = Category.GetAll();
        return View["tasks_form.cshtml", AllCategories];
